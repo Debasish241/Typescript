@@ -105,8 +105,35 @@ let quality: Quantity = 100;
 
 type Metric = "cm" | "inch";
 
-function greet(name: string) {
-  console.log(name.toUpperCase());
+function greet(name: string | null) {
+  if (name) {
+    console.log(name.toUpperCase());
+  } else {
+    console.log("Hello");
+  }
 }
 
-greet("Deba");
+greet("null");
+
+//OPTIONAL CHAINING
+type Customer = {
+  birthday?: Date;
+};
+
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+let customer = getCustomer(1);
+// if (customer !== null && customer !== undefined) {
+//   console.log(customer.birthday);
+// }
+
+//OR
+
+console.log(customer?.birthday?.getFullYear());
+
+//OPTIONAL element access opearator
+
+let log: any = null;
+log?.("a");
